@@ -31,7 +31,7 @@ const peopleList = [
         message: "<img src='image/Chị rọt Thu Duyên.svg' alt='Chị rọt Thu Duyên' style='max-width: 100%; height: auto; margin: 20px 0; border-radius: 10px;' />"
     },
     { 
-        name: "chị Thu Uyên", 
+        name: "Chị Thu Uyên", 
         password: "phanthiet", 
         image: "image/chị Thu Uyên.svg",
         message: "<img src='image/chị Thu Uyên.svg' alt='chị Thu Uyên' style='max-width: 100%; height: auto; margin: 20px 0; border-radius: 10px;' />"
