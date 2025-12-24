@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Giáng Sinh 2026 🎄</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Container cho hiệu ứng tuyết rơi -->
+    <div id="snowContainer"></div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Khu vực lá thư -->
+        <div class="letters-area">
+            <div class="letters-text" id="openGiftsBtn">Khu Vực Của Những Lá Thư</div>
+        </div>
+    </div>
+    
+    <!-- Modal nhập mật khẩu -->
+    <div id="passwordModal" class="password-modal">
+        <div class="password-modal-content">
+            <h2 class="password-title">🔐 Nhập Mật Khẩu</h2>
+            <p class="password-subtitle">Vui lòng nhập mật khẩu để truy cập</p>
+            <input type="password" id="passwordInput" class="password-input" placeholder="Nhập mật khẩu..." autocomplete="off">
+            <div id="passwordError" class="password-error"></div>
+            <div class="password-buttons">
+                <button id="passwordSubmitBtn" class="password-btn password-btn-submit">Xác Nhận</button>
+                <button id="passwordCancelBtn" class="password-btn password-btn-cancel">Hủy</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal đăng nhập cho từng thành viên -->
+    <div id="memberLoginModal" class="password-modal">
+        <div class="password-modal-content">
+            <h2 class="password-title" id="memberLoginTitle">🔐 Đăng Nhập</h2>
+            <p class="password-subtitle" id="memberLoginSubtitle">Vui lòng nhập mật khẩu để xem lời nhắn</p>
+            <input type="password" id="memberPasswordInput" class="password-input" placeholder="Nhập mật khẩu..." autocomplete="off">
+            <div id="memberPasswordError" class="password-error"></div>
+            <div class="password-buttons">
+                <button id="memberPasswordSubmitBtn" class="password-btn password-btn-submit">Xác Nhận</button>
+                <button id="memberPasswordCancelBtn" class="password-btn password-btn-cancel">Hủy</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal hiển thị lời nhắn -->
+    <div id="messageModal" class="password-modal">
+        <div class="message-modal-content">
+            <button id="closeMessageBtn" class="close-message-btn" title="Đóng">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <button id="downloadMessageBtn" class="download-message-btn" title="Tải xuống hình ảnh" style="display: none;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>Tải xuống</span>
+            </button>
+            <div class="message-content" id="messageContent">
+                <!-- Nội dung lời nhắn sẽ được thêm bằng JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Fullscreen cho hộp quà -->
+    <div id="giftsModal" class="gifts-modal">
+        <div class="gifts-modal-content">
+            <!-- Nút đóng -->
+            <button id="closeGiftsBtn" class="close-gifts-btn" title="Đóng">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            
+            <!-- Container hộp quà -->
+            <div class="gifts-container">
+                <h2 class="gifts-title">💌 Những Lá Thư Giáng Sinh 💌</h2>
+                <div class="gifts-grid" id="giftsGrid">
+                    <!-- Các hộp quà sẽ được tạo bằng JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Audio player -->
+    <audio id="backgroundMusic" preload="auto">
+        <!-- Sử dụng file nhạc local từ thư mục music -->
+        <source src="music/ĐÊM THÁNH VÔ CÙNG.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Giao diện phát nhạc Apple Music Style -->
+    <div id="musicPlayer" class="music-player">
+        <div class="player-content">
+            <div class="player-main">
+                <div class="song-info-section">
+                    <div class="song-title" id="currentSongTitle">Bài hát Giáng Sinh 1</div>
+                    <div class="song-artist">Nhạc Giáng Sinh</div>
+                </div>
+                
+                <div class="player-controls-section">
+                    <button id="prevBtn" class="control-btn prev-btn" title="Bài trước">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M13 2.5v11L5 8l8-5.5zM3 2.5h2v11H3v-11z"/>
+                        </svg>
+                    </button>
+                    <button id="playPauseBtn" class="control-btn play-pause-btn" title="Phát/Dừng">
+                        <svg class="play-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M6 4l12 6-12 6V4z"/>
+                        </svg>
+                        <svg class="pause-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style="display: none;">
+                            <path d="M6 4h3v12H6V4zm5 0h3v12h-3V4z"/>
+                        </svg>
+                    </button>
+                    <button id="nextBtn" class="control-btn next-btn" title="Bài tiếp">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M3 2.5v11l8-5.5L3 2.5zM11 2.5h2v11h-2v-11z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="player-progress-section">
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalTime">0:00</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-filled" id="progressFilled"></div>
+                            <div class="progress-handle" id="progressHandle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="togglePlayer" class="toggle-btn" title="Thu gọn/Mở rộng">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                    <path d="M6 9L1 4h10L6 9z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+

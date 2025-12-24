@@ -1,0 +1,1695 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    /* Background với hình 2026.svg */
+    background-image: url('image/2026.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Main Content */
+.main-content {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Tối ưu hiển thị */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Khu vực lá thư */
+.letters-area {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 20px;
+}
+
+.letters-text {
+    color: #ffffff;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 30px rgba(255, 165, 0, 0.4);
+    letter-spacing: 1.5px;
+    text-align: center;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.4) 0%, 
+        rgba(255, 165, 0, 0.5) 25%,
+        rgba(255, 140, 0, 0.5) 50%,
+        rgba(255, 69, 0, 0.4) 75%,
+        rgba(255, 215, 0, 0.4) 100%);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border-radius: 30px;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: all;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 215, 0, 0.3) inset,
+        0 0 40px rgba(255, 215, 0, 0.4),
+        0 0 60px rgba(255, 165, 0, 0.3);
+    animation: 
+        glowText 2s ease-in-out infinite,
+        floatAnimation 3s ease-in-out infinite,
+        pulseAnimation 2.5s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.letters-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    transition: left 0.6s ease;
+    animation: shimmer 3s infinite;
+}
+
+.letters-text::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+        rgba(255, 215, 0, 0.3) 0%, 
+        transparent 70%);
+    animation: rotateGlow 4s linear infinite;
+    pointer-events: none;
+}
+
+.letters-text:hover::before {
+    left: 100%;
+}
+
+.letters-text:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.5) 0%, 
+        rgba(255, 165, 0, 0.6) 25%,
+        rgba(255, 140, 0, 0.6) 50%,
+        rgba(255, 69, 0, 0.5) 75%,
+        rgba(255, 215, 0, 0.5) 100%);
+    border-color: rgba(255, 215, 0, 0.8);
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 0 0 2px rgba(255, 215, 0, 0.4) inset,
+        0 0 60px rgba(255, 215, 0, 0.6),
+        0 0 80px rgba(255, 165, 0, 0.4),
+        0 0 100px rgba(255, 140, 0, 0.3);
+    text-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 165, 0, 0.6);
+    animation-duration: 1s, 2s, 1.5s;
+}
+
+.letters-text:active {
+    transform: translateY(-1px) scale(1);
+}
+
+@keyframes glowText {
+    0%, 100% {
+        text-shadow: 
+            0 2px 6px rgba(0, 0, 0, 0.8),
+            0 0 20px rgba(255, 215, 0, 0.6),
+            0 0 30px rgba(255, 165, 0, 0.4);
+        box-shadow: 
+            0 4px 20px rgba(0, 0, 0, 0.3),
+            0 0 0 1px rgba(255, 215, 0, 0.3) inset,
+            0 0 40px rgba(255, 215, 0, 0.4),
+            0 0 60px rgba(255, 165, 0, 0.3);
+        border-color: rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        text-shadow: 
+            0 2px 10px rgba(0, 0, 0, 0.9),
+            0 0 30px rgba(255, 215, 0, 0.8),
+            0 0 50px rgba(255, 165, 0, 0.6),
+            0 0 70px rgba(255, 140, 0, 0.4);
+        box-shadow: 
+            0 6px 30px rgba(0, 0, 0, 0.4),
+            0 0 0 2px rgba(255, 215, 0, 0.5) inset,
+            0 0 60px rgba(255, 215, 0, 0.6),
+            0 0 80px rgba(255, 165, 0, 0.5),
+            0 0 100px rgba(255, 140, 0, 0.4);
+        border-color: rgba(255, 215, 0, 0.7);
+    }
+}
+
+@keyframes floatAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pulseAnimation {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.9;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
+}
+
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Modal Fullscreen cho hộp quà */
+.gifts-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('image/2029.svg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: transparent;
+    /* Tối ưu rendering cho SVG vector - chất lượng gốc */
+    image-rendering: auto;
+    image-rendering: -webkit-optimize-contrast;
+    /* SVG vector nên được render mượt mà, không pixelated */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: background-image;
+    /* Đảm bảo SVG được render ở độ phân giải cao nhất */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Tối ưu cho SVG vector - không nén */
+    -ms-interpolation-mode: bicubic;
+    /* Đảm bảo không có filter làm mờ */
+    filter: none;
+    -webkit-filter: none;
+    z-index: 3000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+}
+
+.gifts-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.gifts-modal-content {
+    width: 100%;
+    height: 100vh;
+    padding: 35px 20px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.08) 0%,
+        rgba(0, 0, 0, 0.12) 100%
+    );
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    justify-content: flex-start;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gifts-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: visible;
+}
+
+/* Nút đóng */
+.close-gifts-btn {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3001;
+}
+
+.close-gifts-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.close-gifts-btn:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+.gifts-title {
+    text-align: center;
+    color: white;
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+    padding: 25px 30px;
+    max-width: 1600px;
+    margin: 0 auto;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Hình chữ nhật nằm ngang chứa SVG */
+.gift-box {
+    position: relative;
+    width: 100%;
+    max-width: 220px;
+    height: 145px;
+    background: linear-gradient(135deg, #fef9e7 0%, #fef5e7 100%);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.2),
+        0 2px 6px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 2px solid #8b4513;
+    border-radius: 10px;
+    overflow: hidden;
+    animation: letterFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes letterFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-3px) rotate(-0.5deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-3px) rotate(0.5deg);
+    }
+}
+
+/* Container cho SVG */
+.gift-box .letter-image {
+    width: 100%;
+    height: 110px;
+    background-image: url('image/2027.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+    position: relative;
+    /* Tối ưu hiển thị SVG */
+    image-rendering: auto;
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* Đảm bảo SVG hiển thị sắc nét */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: transform 0.3s ease;
+}
+
+/* Ẩn các phần tử không cần thiết */
+.letter-fold {
+    display: none;
+}
+
+.letter-seal {
+    display: none;
+}
+
+.gift-box:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 5px 12px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        0 0 35px rgba(255, 215, 0, 0.5);
+    animation: none;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+    border-color: #6b3410;
+}
+
+.gift-box:active {
+    transform: translateY(-4px) rotate(0deg) scale(1);
+}
+
+.gift-name {
+    color: #5d4037;
+    font-size: 0.95em;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px;
+    background: linear-gradient(135deg, rgba(254, 249, 231, 0.95) 0%, rgba(254, 245, 231, 0.95) 100%);
+    text-shadow: 
+        1px 1px 2px rgba(255, 255, 255, 0.9),
+        0 0 10px rgba(255, 215, 0, 0.3);
+    letter-spacing: 1.5px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-top: 2px solid rgba(139, 69, 19, 0.2);
+    flex-shrink: 0;
+}
+
+/* Icon tem thư nhỏ ở góc trên bên phải */
+.gift-box .letter-seal {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.95) 0%, 
+        rgba(255, 165, 0, 0.95) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    border: 2px solid #8b4513;
+    box-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(255, 215, 0, 0.5),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    animation: sealGlow 2s ease-in-out infinite;
+    z-index: 4;
+    transform: rotate(-8deg);
+}
+
+@keyframes sealGlow {
+    0%, 100% {
+        box-shadow: 
+            0 4px 8px rgba(0, 0, 0, 0.3),
+            0 0 15px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        box-shadow: 
+            0 4px 8px rgba(0, 0, 0, 0.3),
+            0 0 25px rgba(255, 215, 0, 0.8),
+            0 0 35px rgba(255, 165, 0, 0.5);
+    }
+}
+
+.gift-box:hover .gift-name {
+    text-shadow: 
+        1px 1px 2px rgba(255, 255, 255, 0.9),
+        0 0 20px rgba(255, 215, 0, 0.6);
+    background: linear-gradient(135deg, rgba(255, 250, 240, 0.98) 0%, rgba(255, 248, 240, 0.98) 100%);
+}
+
+.gift-box:hover .letter-image {
+    transform: scale(1.08);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(1.05);
+}
+
+/* Container cho tuyết rơi */
+#snowContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* Tuyết rơi - các bông tuyết */
+.snowflake {
+    position: absolute;
+    color: white;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    animation: fall linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh) translateX(var(--drift)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+/* Giao diện phát nhạc Apple Music Style */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(255, 255, 255, 0.1);
+    z-index: 2000;
+    min-width: 320px;
+    max-width: 400px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.music-player.collapsed {
+    min-width: auto;
+    max-width: none;
+    width: auto;
+    padding: 8px 12px;
+}
+
+.music-player.collapsed .player-content .player-main {
+    display: none;
+}
+
+.player-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.player-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Song Info Section */
+.song-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.song-title {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.song-artist {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 11px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+/* Player Controls Section */
+.player-controls-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.9);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.play-pause-btn {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.play-pause-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
+}
+
+.play-pause-btn.playing .play-icon {
+    display: none;
+}
+
+.play-pause-btn.playing .pause-icon {
+    display: block !important;
+}
+
+.play-pause-btn:not(.playing) .play-icon {
+    display: block;
+}
+
+.play-pause-btn:not(.playing) .pause-icon {
+    display: none !important;
+}
+
+/* Progress Section */
+.player-progress-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+.progress-bar-container {
+    width: 100%;
+}
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.progress-filled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.progress-handle {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    cursor: grab;
+}
+
+.progress-handle:active {
+    cursor: grabbing;
+}
+
+.progress-bar:hover .progress-handle,
+.progress-bar:active .progress-handle {
+    opacity: 1;
+}
+
+.progress-bar:hover .progress-filled {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Toggle Button */
+.toggle-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.toggle-btn.collapsed svg {
+    transform: rotate(180deg);
+}
+
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .gifts-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        padding: 22px 25px;
+    }
+    
+    .gift-box {
+        max-width: 200px;
+        height: 135px;
+    }
+    
+    .gift-box .letter-image {
+        height: 105px;
+    }
+    
+    .gift-name {
+        font-size: 0.9em;
+        padding: 9px 7px;
+    }
+    
+    .gifts-title {
+        font-size: 2.1em;
+        margin-bottom: 28px;
+    }
+    
+    .gifts-modal-content {
+        padding: 40px 25px 25px;
+    }
+    
+    .letters-area {
+        bottom: 25px;
+    }
+    
+    .music-player {
+        padding: 12px 15px;
+        bottom: 15px;
+        left: 15px;
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    body {
+        background-image: url('image/2030.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /* Tối ưu rendering cho SVG vector - chất lượng gốc */
+        image-rendering: auto;
+        image-rendering: -webkit-optimize-contrast;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: background-image;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -ms-interpolation-mode: bicubic;
+    }
+    
+    .snowflake {
+        font-size: 0.8em;
+    }
+    
+    .letters-area {
+        bottom: 80px;
+        padding: 0 15px;
+        max-width: 100%;
+        z-index: 100;
+        position: fixed;
+    }
+    
+    .letters-text {
+        font-size: 0.8em;
+        padding: 12px 20px;
+        letter-spacing: 1.2px;
+        width: 100%;
+        max-width: 90%;
+        margin: 0 auto;
+        border-radius: 30px;
+        box-shadow: 
+            0 6px 25px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(255, 215, 0, 0.4) inset,
+            0 0 50px rgba(255, 215, 0, 0.5),
+            0 0 70px rgba(255, 165, 0, 0.4);
+    }
+    
+    .gifts-modal-content {
+        padding: 30px 15px 20px;
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+    }
+    
+    .close-gifts-btn {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        position: fixed;
+        z-index: 3001;
+    }
+    
+    .gifts-title {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+        letter-spacing: 1.5px;
+        position: sticky;
+        top: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.08) 0%,
+            rgba(0, 0, 0, 0.12) 100%
+        );
+        padding: 10px 0;
+        z-index: 10;
+        backdrop-filter: blur(10px);
+    }
+    
+    .gifts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 15px 10px 30px;
+        max-width: 100%;
+        min-height: auto;
+    }
+    
+    .gift-box {
+        width: 100%;
+        max-width: 100%;
+        height: 115px;
+    }
+    
+    .gift-box .letter-image {
+        height: 85px;
+    }
+    
+    .gift-name {
+        font-size: 0.8em;
+        letter-spacing: 1px;
+        padding: 7px 5px;
+    }
+    
+    .gifts-container {
+        height: auto;
+        min-height: 100%;
+        justify-content: flex-start;
+        overflow: visible;
+    }
+    
+    .music-player {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        min-width: auto;
+        max-width: none;
+        padding: 12px 14px;
+        z-index: 2000;
+        box-shadow: 
+            0 10px 40px rgba(0, 0, 0, 0.5), 
+            0 0 0 0.5px rgba(255, 255, 255, 0.15);
+        border: 0.5px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .song-title {
+        font-size: 11px;
+    }
+    
+    .song-artist {
+        font-size: 9px;
+    }
+    
+    .control-btn {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .play-pause-btn {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .time-display {
+        font-size: 8px;
+    }
+    
+    .progress-bar {
+        height: 3px;
+    }
+}
+
+/* Responsive - Small Mobile */
+@media (max-width: 480px) {
+    body {
+        background-attachment: scroll;
+    }
+    
+    .gifts-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px 8px 40px;
+    }
+    
+    .gift-box {
+        height: 130px;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .gift-box .letter-image {
+        height: 100px;
+    }
+    
+    .gift-name {
+        font-size: 0.9em;
+        padding: 10px 8px;
+    }
+    
+    .gifts-modal-content {
+        padding: 25px 12px 20px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .gifts-title {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        position: sticky;
+        top: 0;
+        padding: 8px 0;
+        z-index: 10;
+    }
+    
+    .close-gifts-btn {
+        top: 12px;
+        right: 12px;
+        width: 38px;
+        height: 38px;
+    }
+    
+    .letters-area {
+        bottom: 75px;
+        padding: 0 10px;
+    }
+    
+    .letters-text {
+        font-size: 0.7em;
+        padding: 7px 14px;
+    }
+    
+    .music-player {
+        padding: 8px 10px;
+        bottom: 8px;
+        left: 8px;
+        right: 8px;
+    }
+    
+    .song-title {
+        font-size: 10px;
+    }
+    
+    .song-artist {
+        font-size: 8px;
+    }
+    
+    .control-btn {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .play-pause-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Modal nhập mật khẩu */
+.password-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('image/2029.svg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: transparent;
+    /* Tối ưu rendering cho SVG vector - chất lượng gốc */
+    image-rendering: auto;
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: background-image;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-interpolation-mode: bicubic;
+    filter: none;
+    -webkit-filter: none;
+    backdrop-filter: blur(5px);
+    z-index: 4000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    align-items: center;
+    justify-content: center;
+}
+
+.password-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.password-modal-content {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0%,
+        rgba(0, 0, 0, 0.2) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    padding: 45px 55px;
+    border-radius: 25px;
+    box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.5),
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.password-modal-content::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        transparent 70%);
+    animation: rotateGlow 8s linear infinite;
+    pointer-events: none;
+}
+
+.password-modal-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+}
+
+.password-title {
+    color: #ffffff;
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.password-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05em;
+    margin-bottom: 30px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 1;
+}
+
+.password-input {
+    width: 100%;
+    padding: 16px 22px;
+    font-size: 1.15em;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #ffffff;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    margin-bottom: 18px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.password-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.password-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2),
+        0 4px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.password-error {
+    color: #ffcccc;
+    font-size: 0.95em;
+    margin-bottom: 18px;
+    min-height: 22px;
+    display: none;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    text-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(255, 100, 100, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+.password-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.password-btn {
+    padding: 14px 35px;
+    font-size: 1.05em;
+    font-weight: 700;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    letter-spacing: 1.5px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.password-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    transition: left 0.5s;
+}
+
+.password-btn:hover::before {
+    left: 100%;
+}
+
+.password-btn-submit {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #ffffff;
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.password-btn-submit:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.3) inset,
+        0 0 30px rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.password-btn-submit:active {
+    transform: translateY(-1px) scale(1);
+}
+
+.password-btn-cancel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.password-btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 6px 25px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.password-btn-cancel:active {
+    transform: translateY(-1px) scale(1);
+}
+
+@media (max-width: 768px) {
+    .password-modal {
+        background-attachment: scroll;
+    }
+    
+    .password-modal-content {
+        padding: 35px 30px;
+        max-width: 90%;
+        border-radius: 20px;
+    }
+    
+    .password-title {
+        font-size: 1.8em;
+        letter-spacing: 1.5px;
+    }
+    
+    .password-subtitle {
+        font-size: 0.95em;
+    }
+    
+    .password-input {
+        padding: 14px 18px;
+        font-size: 1.05em;
+    }
+    
+    .password-btn {
+        padding: 12px 25px;
+        font-size: 0.95em;
+        letter-spacing: 1px;
+    }
+    
+    .password-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* Modal hiển thị lời nhắn */
+.message-modal-content {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0%,
+        rgba(0, 0, 0, 0.2) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    padding: 50px 60px;
+    border-radius: 25px;
+    box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.5),
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.message-modal-content::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+        rgba(255, 215, 0, 0.1) 0%, 
+        transparent 70%);
+    animation: rotateGlow 8s linear infinite;
+    pointer-events: none;
+}
+
+.message-modal-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+}
+
+.close-message-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.download-message-btn {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 12px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #ffffff;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 0.95em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+}
+
+.download-message-btn.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: all;
+    animation: downloadBtnFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes downloadBtnFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.download-message-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateX(-50%) translateY(-3px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+        0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.download-message-btn:active {
+    transform: translateX(-50%) translateY(-1px);
+}
+
+.download-message-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.download-message-btn:hover svg {
+    transform: translateY(2px);
+}
+
+.close-message-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.close-message-btn:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+.message-content {
+    color: #ffffff;
+    font-size: 1.3em;
+    line-height: 1.8;
+    text-align: center;
+    text-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.4);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    position: relative;
+    z-index: 1;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.message-content br {
+    line-height: 2;
+}
+
+.message-image-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: containerFadeIn 0.5s ease-out;
+}
+
+@keyframes containerFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.message-content img,
+.message-image {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 75vh;
+    margin: 0 auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.5),
+        0 8px 20px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    animation: imageFadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.message-image.loaded {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+@keyframes imageFadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.message-content img:hover,
+.message-image:hover {
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.6),
+        0 10px 25px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.15),
+        0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive - Tablet cho modal lời nhắn */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .message-modal-content {
+        padding: 45px 50px;
+        max-width: 700px;
+    }
+    
+    .message-content {
+        font-size: 1.2em;
+        line-height: 1.7;
+        min-height: 350px;
+    }
+    
+    .message-content img,
+    .message-image {
+        max-height: 70vh;
+        padding: 12px;
+    }
+}
+
+/* Responsive - Mobile cho modal lời nhắn */
+@media (max-width: 768px) {
+    .message-modal-content {
+        padding: 40px 25px 80px;
+        max-width: 95%;
+        border-radius: 20px;
+        max-height: 90vh;
+    }
+    
+    .message-content {
+        font-size: 1.05em;
+        line-height: 1.6;
+        padding: 15px 0;
+        min-height: 300px;
+    }
+    
+    .message-content img,
+    .message-image {
+        max-height: 75vh;
+        padding: 10px;
+        border-radius: 12px;
+    }
+    
+    .close-message-btn {
+        width: 40px;
+        height: 40px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .download-message-btn {
+        bottom: 20px;
+        padding: 10px 20px;
+        font-size: 0.85em;
+    }
+    
+    .download-message-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Responsive - Small Mobile cho modal lời nhắn */
+@media (max-width: 480px) {
+    .message-modal-content {
+        padding: 30px 20px 70px;
+        max-width: 95%;
+        max-height: 90vh;
+    }
+    
+    .message-content {
+        font-size: 0.95em;
+        line-height: 1.5;
+        padding: 10px 0;
+        min-height: 250px;
+    }
+    
+    .message-content img,
+    .message-image {
+        max-height: 70vh;
+        padding: 8px;
+        border-radius: 10px;
+    }
+    
+    .close-message-btn {
+        width: 35px;
+        height: 35px;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .download-message-btn {
+        bottom: 15px;
+        padding: 8px 16px;
+        font-size: 0.8em;
+        gap: 6px;
+    }
+    
+    .download-message-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
